@@ -4,22 +4,33 @@ Implementing an ansible role for installing Apache on CentOS 9
 
 ---
 ## Prerequisite
-* python3 `sudo yum install python3`
-* git `sudo yum install git`
-* ansible `sudo yum install epel-release` , `sudo yum install ansible`
+#### On master machine
+* Install python3 `sudo yum install python3`
+* Install git `sudo yum install git`
+* Install ansible `sudo yum install epel-release` , `sudo yum install ansible`
+* Set Passwordless authentication between master and hosts `ssh-keygen` , `ssh-copy-id host_name@IP_address`
+* Add inventory file has all hosts\
+For example:
+  ```
+  webserver1 ansible_ssh_host=192.168.21.138 ansible_ssh_user=mariam ansible_ssh_private_key_file=/etc/ansible/key.pem
+  ```
+
+#### On hosts machines
+* in `/etc/sudoers` add `host_name ALL=(ALL) NOPASSWD: ALL`
 ---
 ## Dependencies
-### `requirements.yml` file 
+* ###  `requirements.yml` file 
 ```
 roles:
   - src: https://github.com/MariamGad/apache-ansible-role.git
 ```
-### `playbook.yml` file
+by default roles are downloaded here `/home/username/.ansible/roles`
+* ###  `playbook.yml` file
 ```
 - hosts: webservers
   become: yes
   roles:
-    - /home/mariam/.ansible/roles/apache-ansible-role
+    - /home/username/.ansible/roles/apache-ansible-role
 ```
 ---
 
