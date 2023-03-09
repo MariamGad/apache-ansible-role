@@ -1,6 +1,10 @@
 # apache-ansible-role
 ## Overview
 Implementing an ansible role for installing Apache on CentOS 9
+<div align="center">
+<img src="https://user-images.githubusercontent.com/47721226/224185901-f065bd02-e4df-4aed-9007-c2bfa1f29c24.png">
+<p>Used hierarchy</p>
+</div>
 
 ---
 ## Prerequisite
@@ -24,7 +28,7 @@ For example:
 roles:
   - src: https://github.com/MariamGad/apache-ansible-role.git
 ```
-by default roles are downloaded here `/home/username/.ansible/roles`
+  by default roles are downloaded here `/home/username/.ansible/roles`
 * ###  `playbook.yml` file
 ```
 - hosts: webservers
